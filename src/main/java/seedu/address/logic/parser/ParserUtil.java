@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -89,6 +90,30 @@ public class ParserUtil {
     public static Optional<Phone> parsePhone(Optional<String> phone) throws IllegalValueException {
         requireNonNull(phone);
         return phone.isPresent() ? Optional.of(parsePhone(phone.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code String weight} into a {@code Weight}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code weight} is invalid.
+     */
+    public static Weight parseWeight(String weight) throws IllegalValueException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
+            throw new IllegalValueException(Weight.MESSAGE_WEIGHT_CONSTRAINTS);
+        }
+        return new Weight(trimmedWeight);
+    }
+
+    /**
+     * Parses a {@code Optional<String> weight} into an {@code Optional<Weight>} if {@code weight} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<Weight> parseWeight(Optional<String> weight) throws IllegalValueException {
+        requireNonNull(weight);
+        return weight.isPresent() ? Optional.of(parseWeight(weight.get())) : Optional.empty();
     }
 
     /**

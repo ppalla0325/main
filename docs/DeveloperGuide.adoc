@@ -10,7 +10,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103JAN2018-F12-B2/main/tree/master
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -782,66 +782,25 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
-* people who keep records of other people
-* people who want to track progress of other people (how they have changed)
-* Personal Trainer
+* personal trainers who keep records of clients
+* personal trainers who want to track clients' progress
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
-*Value proposition*: Lets PT keep track of their clients weight change per sessions
-*Value proposition*: On command shows a graph of the trainee's weight loss
-*Value proposition*: Allows the personal trainer to set goals for their
-client and checks to see if they reached the goals
-*Value proposition*: groups clients into subgroups (Obese, Underweight,..)
-*Value proposition*: provide feedbacks on clients progress
-*Value proposition*: keep a list of clients and expand clientele
+
+
 *Value proposition*:
+
+* manage clients faster than a typical mouse/GUI driven app
+* group clients according to BMI classification
+* track individual client's progress using a chart for weight changes
+* set goals for clients and see clients' feedback
+
 [appendix]
 == User Stories
-
-As a Personal Trainer, I can track the weight loss of my clients per session, so that I can track my clients progression.
-
-
-As a Personal Trainer, I can look up specific training plans made by other trainers, so my clients have the best possible fitness regimen for their problem
-As a Person Trainer, I can get reviews from my clients on what worked best for them and what didn’t, so that my training is improved
-As a Personal Trainer, I can help clients who can’t make it to the session work though at-home workouts, so that clients are always exercising.
-As a Personal Trainer, I can list mobility and strength imbalance issues my client has, allowing me to track his progress for his weak areas
-As a Personal Trainer, I can see my clients day-to-day exercise schedule, so that i can keep a record of the exercise they pursue outside of sessions.
-As a Personal Trainer, I can set list workouts with time’s associated, so that during workout i can keep track of how much time on a workout.
-As a Personal Trainer, I can track which workouts my clients excel and lack, so that i can create a even more personalized workout experience.
-
-
-As a Trainer, I can made a list of specific workouts tailored to each client, so that they can have a personalised coaching experience.
-As a Trainer, I can make a list of meal plans for each specific day for my clients, so that they will be on track in their fitness journey.
-(WH) Nice-To-Have As a Trainer, I can provide comments or feedbacks on my client’s progress, so that they will be motivated to carry on training.
-As a Trainer, I can set goals for my clients, so that they will know what to work towards.
-(WH) Must-Have As a Trainer, I can group my clients into subgroups (e.g. Obese, Underweight), so that I can have an overview of my clients. (yes!!! But how can we implement this? Additional field, or special tags?)
-As a client, I can view the comments my Trainer has provided for me, so that I can work on my weaker areas.
-(WH) Nice-To-Have As a client, I can update my weight into the system, so that the Trainer can keep track of my progress.
-As a client, I can key in any queries I might have into the system, so that I can receive clarification from my Trainer.
-As a client, I can update my goals and activity, so that I can receive feedback and tips from my personal trainer;
-As a client, I can see when my personal trainer is free, so that I can schedule extra sessions with him if needed.
-(WH) Nice-To-Have As a client, I can cancel my sessions with my personal trainer when there is a schedule clash, so that I can inform my personal trainer beforehand.
-As a client, I can check the location where my sessions are held at, so that I can plan my day ahead and make a smoother journey.
-(WH) Must-Have As a Personal Trainer, I can add new clients and their data to my list, so that I can expand my career and extend my clientele.
-As a Personal Trainer, I can set a cut-off timings for training sessions, so that I can have some personal time to do what I want apart from work.
-As a Personal Trainer, I can amend my appointments and let my clients know of the change, so that I can better resolve potential clashes in appointments.
-As a Personal Trainer, I can see how long each client has been with me, so that I can form better relationships with my clients by introducing incentives.
-
-As a client, I am able to check my weight loss, so that i know i am getting fitter.
-As a client, i am able to help find other people of the same workout and timing, so that i can share my experiences.
-As a client, i am able to check the remaining cost of the trainings that i have yet to pay, so that i will not have to constantly keep track.
-As a Personal Trainer, I can allow my clients to track their progress but prevent them from accessing other clients information, to allow for privacy.
-As a Personal Trainer, I can add various statistics(e.g. Weight, height, age, gender, calories,etc) to each client so that i can easily track and find them.
-As a Personal Trainer, I can use the (APP?) to find out which aspect of each client can be improved, so that i can help them improve in fitness.
-As a Personal Trainer, i can be alerted if i have a training session with a client in the near future, so that i will not upset clients.
-(WH) Must-Have As a Personal Trainer, i can set a goal for the client and obtain the appropriate amount of calories and protein in order to reach the desired goal, so as to assist in grooming the client.
-
-
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
@@ -856,12 +815,18 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |update the weight of my client |track his/her weight progress
+
+|`* * *` |user |set goals for my clients |know what target we both are working towards
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |user |track the weight changes of my clients |view my clients' progression till date using past weight updates
+
+|`* *` |user with many persons in the client tracker |sort persons by BMI classification |prioritise the needs of my clients and see which clients to focus on
 |=======================================================================
 
-_{More to be added}_
+
 
 [appendix]
 == Use Cases
@@ -894,7 +859,89 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+
+=== Use case: Add person
+
+*MSS*
+
+1. User requests to add person
+2. AddressBook prompts for data input
+3. User inputs data for person to be added
+4. AddressBook adds the new person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. Person of the same name (regardless of case) is already in AddressBook
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
+=== Use case: Add goal for person
+
+*MSS*
+
+1. User requests to add goal
+2. AddressBook prompts for data input
+3. User inputs person name and goal to be added
+4. AddressBook adds the new goal for the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 3b. The input goal is empty.
++
+[none]
+** 3b1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
+=== Use case: Track weight changes for person
+
+*MSS*
+
+1. User requests to track weight changes
+2. AddressBook prompts for data input
+3. User inputs person to track past weight
+4. AddressBook displays a chart showing past changes in weight
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 4a. There are no changes to track.
++
+[none]
+** 4a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
 
 [appendix]
 == Non Functional Requirements
@@ -913,6 +960,33 @@ Windows, Linux, Unix, OS-X
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
+
+[[personal-trainer]] Personal trainer::
+Target audience
+
+[[trainer]] Trainer::
+Same as above
+
+[[client]] Client::
+Indirect target audience, due the the fact the employer-employee relationship between them and trainers
+
+[[track]] Track::
+Understanding the fitness(e.g. weight loss/gain, calories, protein) progress of the clients
+
+[[meal-plans]] Meal plan::
+A combination of dietary information that should be followed
+
+[[training]] Training::
+A period of time when client is working out
+
+[[session]] Session::
+Same as above
+
+[[appointment]] Appointment::
+Same as above
+
+[[goals]] Goals::
+A combination of desirable attributes that clients want to achieve
 
 [appendix]
 == Product Survey

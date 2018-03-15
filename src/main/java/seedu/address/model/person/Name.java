@@ -38,6 +38,14 @@ public class Name {
         return test.matches(NAME_VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if two Names in comparison are alphabetically the same (regardless of case).
+     */
+    public boolean alphabeticallyEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Name // instanceof handles nulls
+                && this.fullName.toLowerCase().equals(((Name) other).fullName.toLowerCase())); // state check
+    }
 
     @Override
     public String toString() {
