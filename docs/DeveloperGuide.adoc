@@ -230,6 +230,187 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+// tag::Google Calendar API[]
+@by Wei Sheng
+
+=== Integrated Google Calendar Services (To be implemented)
+
+The integrated Google Calendar API will allow personal trainers and clients to access their google calendar within the app for increased
+ease and functionality. The trainers and clients will be able to interact with the google calendar through a mouse click or Command Line
+Interface. The proposed commands to be implemented are as follows:
+.Calendar: Opens up the google calendar API
+
+. AddEvent: Allow trainers to add event (training sessions with their clients)
+
+. DeleteEvent: Deletes an event in the case where trainers/clients are unable to make it
+
+. FindAll: Find all the sessions for a particular client for ease of viewing.
+
+==== Current Implementation [V1.0]
+
+Currently, the Google Calendar is opened up in a separate web window upon calling of the command "calendar" and is not yet integrated
+into the Personal Trainer Pro App. Also, the current implementation does not support Command Line Interface and require users to interact
+with the calendar through mouse click.
+
+When the user keys in the "calendar", the AddressBookParser parses through the command to check for correct parameters. Then, an event,
+ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up a new window showing the
+Google Calendar website.
+
+==== Future implementation [V2.0]
+
+Upon "calendar" command, a StackPane displaying the google calendar will appear, overlaying the main screen. Using
+the Google Calendar API, the user can also then interact with it through Command Line Interface.
+
+==== Design Consideration
+
+===== Aspect: Implementation of Google Calendar API
+
+Alternative 1 (current choice): Open up in a new browser
+
+Pros: Easy to implement and debug
+
+Cons: Lack of Command Line Interface, troublesome for users
+
+Alternative 2: Open Google Calendar in the application
+
+Pros: Ease of viewing for the trainers and clients, supports Command Line Interface
+
+Cons: Positioning of StackPane or other scenebuilder objects may hinder other interface in the current application.
+
+//tag:: gender[]
+@by Ivan
+== Gender attribute
+==== Current Implementation
+
+The Gender attribute only accepts male and female genders. This is shown by only accepting characters M, F, m and f and only single letters are accepted. The 'GENDER_VALIDATION_REGEX' ensures that only the selected single alphabets are able to be input into the command line.
+
+The Gender attribute resides as an attribute to a person under 'model'. This means that every Person added by the AddCommand line must have a gender.
+
+Gender is implemented in this way:
+[source,java]
+---
+public class Gender {
+
+    public static final String MESSAGE_GENDER_CONSTRAINTS =
+            "Gender can only be the alphabets M or F or m or f";
+    public static final String GENDER_VALIDATION_REGEX = "[mfMF]{1}+";
+    public final String value;
+     //... rest of attribute functions ...
+
+     // Test for regex is shown below
+     public static boolean isValidGender(String test) {
+             return test.matches(GENDER_VALIDATION_REGEX);
+         }
+
+     //... rest of attribute functions ...
+    }
+---
+
+Supposed the user has just created a person using the command line but the gender is null or not within the regex this will cause a failure in execution of the AddCommand and a display of the 'MESSAGE_GENDER_CONSTRAINTS'.
+
+The same applies to the Editfunction where the same checks will apply. However this attribute differs from the name attribute as it can be duplicated to different persons.
+
+AddCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        requireNonNull(model);
+        try {
+            model.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (DuplicatePersonException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+    }
+---
+
+EditCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        try {
+            model.updatePerson(personToEdit, editedPerson);
+        } catch (DuplicatePersonException dpe) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } catch (PersonNotFoundException pnfe) {
+            throw new AssertionError("The target person cannot be missing");
+        }
+        //... rest of edit command ...
+    }
+---
+
+As one can see it will throw an exception be it either command when a duplicate person is found.
+
+==== Design Considerations
+
+===== Aspect: Implementation of `Gender` attribute
+
+* **Alternative 1 (current choice):** Add a new gender attribute to person 'g/'.
+** Pros: We will not lose any undone/redone functionality as it is now part of the default behaviour.
+** Cons: It will now require constant addition of the gender attribute to a person even when the gender attribute is not needed in some cases.
+* **Alternative 2:** Add gender as a tag
+** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
+** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+
+
+
+// tag::bmiclassification[]
+@by Wenhao
+
+=== Auto-assigning and Sorting of BMI Classification labels to clients (To be implemented)
+
+The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
+Acceptable, or Underweight), so as to allow the user to identify which clients need more help in reaching their desired BMI range.
+
+The BMI classification will be adapted from the standards set by the World Health Organisation (WHO). The background colour of the Person card for each
+client will differ in colour according to the BMI classification for that particular client.
+
+Current BMI standards set by the World Health Organisation (WHO) are as follows:
+[width="59%",cols="32%,<48%,<20%",options="header",]
+|=======================================================================
+|Classification |BMI Range |Background Colour
+|**Underweight** |BMI < 18.5 |Orange
+
+|**Acceptable** |18.5 &le; BMI &le; 24.9 |Green
+
+|**Overweight** |25 &le; BMI &le; 29.9 |Orange
+
+|**Obese** |BMI &ge; 30 |Red
+|=======================================================================
+
+
+==== Current Implementation [as of v1.2]
+
+Currently, each client is saved as a person with weight and height attributes. This is only sufficient to facilitate the calculation of their BMI.
+Having the weight and height attributes in a Person allows the easy updating using the `edit` command in the application.
+This will allow the BMI to be re-calculated each time a client's weight or height (or both) is updated.
+
+==== Future implementation [v1.5]
+
+The BMI for individual clients will be calculated using the following formula: **BMI = weight / (height / 100)^2^ **
+
+The BMI for individual clients will then be stored as a Person attribute, but not displayed in the Person card to minimise the cluttering of information in the application.
+This will allow a sorting method to be implemented in the application. The current plan is to sort the clients according to their BMI values, in descending order.
+
+==== Design Considerations
+
+===== Aspect: Display of BMI Classification
+
+* **Alternative 1 (current choice):** Individual client's BMI will not be shown as a number, but classification is reflected using the Person card's background colour
+** Pros: Easy to see at first glance which client is in which classification, minimise information included in a Person card.
+** Cons: Determining a client's actual BMI will require the trainer to perform a manual calculation since the actual BMI value is not reflected in the application.
+
+* **Alternative 2:** Display client's BMI classification as tags to their Person card
+** Pros: Ease of viewing for trainer, actual BMI value will be available at first glance.
+** Cons: Displaying each client's BMI values as tags may interfere with the implementation and display of any existing tags and it is crucial to ensure the implementation of this tag, if desired,
+in a way that will not affect the storage or retrieval of other tags associated with each client.
+
+
+
 // tag::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
@@ -780,6 +961,25 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 [appendix]
 == Product Scope
 
+*Feature Contribution*:
+
+* Ivan:
+* Minor - Gender Attribute added, this will enable trainers to understand the amount of calories and weight that
+  contributes to a specific person of a certain gender.
+* Major - Firstly a function to estimate the approximate calories needed to reach the goal of the client and then a
+ page with the exercises the clients can do with links to video they can watch from the application
+
+* Wenhao:
+* Minor - Sorting command to sort the list of clients by BMI range
+* Major - Automatically generate weight classification (Overweight/Acceptable/Underweight) based on
+  current attributes of each client. This will be listed in a similar fashion to tags under a client's name
+
+* Wei Sheng:
+* Minor - Weight Attribute added. Since this is an application for fitness trainers, the weight of the clients is
+essential as it allows the trainers to gauge the physical fitness of the clients.
+* Major - Integrated google calendar to allow the trainer to add training sessions with the clients and for the
+clients to view the training sessions they have signed up for.
+
 *Target user profile*:
 
 * has a need to manage a significant number of clients
@@ -949,6 +1149,9 @@ Use case resumes at step 2.
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to display data in a simple and clean format so a user is able to view the data with ease.
+.  New information submitted by user should be updated immediately.
+.  Client details should only be accessible to the client and the Trainer.
 
 _{More to be added}_
 

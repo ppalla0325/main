@@ -4,7 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -21,14 +24,20 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_HEIGHT = "169.0";
     public static final String DEFAULT_WEIGHT = "55.5";
+    public static final String DEFAULT_GENDER = "f";
+    public static final String DEFAULT_AGE = "22";
     public static final String DEFAULT_TAGS = "friends";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Height height;
     private Weight weight;
+    private Gender gender;
+    private Age age;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -36,7 +45,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        height = new Height(DEFAULT_HEIGHT);
         weight = new Weight(DEFAULT_WEIGHT);
+        gender = new Gender(DEFAULT_GENDER);
+        age = new Age(DEFAULT_AGE);
         tags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
     }
 
@@ -48,7 +60,10 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        height = personToCopy.getHeight();
         weight = personToCopy.getWeight();
+        gender = personToCopy.getGender();
+        age = personToCopy.getAge();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -93,6 +108,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Height} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withHeight(String height) {
+        this.height = new Height(height);
+        return this;
+    }
+
+    /**
      * Sets the {@code Weight} of the {@code Person} that we are building.
      */
     public PersonBuilder withWeight(String weight) {
@@ -100,8 +123,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Age} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAge(String age) {
+        this.age = new Age(age);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, weight, tags);
+        return new Person(name, phone, email, address, height, weight, gender, age, tags);
     }
 
 }

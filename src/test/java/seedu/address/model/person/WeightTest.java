@@ -34,7 +34,7 @@ public class WeightTest {
         assertFalse(Weight.isValidWeight("9p.2")); // alphabets within digits
         assertFalse(Weight.isValidWeight("9 3")); // spaces within digits
 
-        // valid phone numbers
+        // valid weight numbers
         assertTrue(Weight.isValidWeight("91.1")); // exactly 3 numbers
         assertTrue(Weight.isValidWeight("95"));
         assertTrue(Weight.isValidWeight("105")); // heavy weight
