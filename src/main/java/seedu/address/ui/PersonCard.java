@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label weight;
     @FXML
+    private Label bodyMassIndex;
+    @FXML
     private Label gender;
     @FXML
     private Label age;
@@ -57,6 +59,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         height.setText(person.getHeight().value);
         weight.setText(person.getWeight().value);
+        bodyMassIndex.setText(person.getBodyMassIndex().value);
         gender.setText(person.getGender().value);
         age.setText(person.getAge().value);
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

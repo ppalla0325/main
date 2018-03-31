@@ -72,6 +72,11 @@
                <Font name="System Bold" size="12.0" />
             </font></Label>
       <Label fx:id="weight" styleClass="cell_small_label" text="\$weight" />
+         <Label text="BMI:">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Label>
+      <Label fx:id="bodyMassIndex" styleClass="cell_small_label" text="\$bodyMassIndex" />
          <Label text="Age:">
             <font>
                <Font name="System Bold" size="12.0" />

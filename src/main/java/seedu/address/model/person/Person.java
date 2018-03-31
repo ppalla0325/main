@@ -21,6 +21,7 @@ public class Person {
     private final Address address;
     private final Height height;
     private final Weight weight;
+    private final BodyMassIndex bodyMassIndex;
     private final Gender gender;
     private final Age age;
 
@@ -38,6 +39,7 @@ public class Person {
         this.address = address;
         this.height = height;
         this.weight = weight;
+        this.bodyMassIndex = new BodyMassIndex(height.toString(), weight.toString());
         this.gender = gender;
         this.age = age;
         // protect internal tags from changes in the arg list
@@ -68,6 +70,10 @@ public class Person {
         return weight;
     }
 
+    public BodyMassIndex getBodyMassIndex() {
+        return bodyMassIndex;
+    }
+
     public Gender getGender() {
         return gender;
     }
@@ -82,6 +88,7 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags.toSet());
     }
+
 
     @Override
     public boolean equals(Object other) {

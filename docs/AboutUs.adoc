@@ -14,8 +14,8 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 image::ivan.jpg[width="150", align="left"]
 {empty}[https://github.com/hypertun[github]]
 
-Role: (to be inserted)
-Responsibilities:
+Role: Developer
+Responsibilities: Model
 
 '''
 
@@ -23,8 +23,8 @@ Responsibilities:
 image::wenhao.jpg[width="150", align="left"]
 {empty}[http://github.com/wenhao53y[github]]
 
-Role: (to be inserted)
-Responsibilities: (to be inserted)
+Role: Developer
+Responsibilities: UI
 
 '''
 
@@ -32,8 +32,8 @@ Responsibilities: (to be inserted)
 image::weisheng.jpg[width="150", align="left"]
 {empty}[http://github.com/wayneong95[github]]
 
-Role: (to be inserted)
-Responsibilities: (to be inserted)
+Role: Developer
+Responsibilities: Logic
 
 '''
 

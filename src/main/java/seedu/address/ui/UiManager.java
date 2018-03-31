@@ -112,7 +112,7 @@ public class UiManager extends ComponentManager implements Ui {
     //==================== Event Handling Code ===============================================================
 
     @Subscribe
-    private void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
+    public void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         showFileOperationAlertAndWait(FILE_OPS_ERROR_DIALOG_HEADER_MESSAGE, FILE_OPS_ERROR_DIALOG_CONTENT_MESSAGE,
                 event.exception);

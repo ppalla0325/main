@@ -247,15 +247,14 @@ Interface. The proposed commands to be implemented are as follows:
 
 . FindAll: Find all the sessions for a particular client for ease of viewing.
 
-==== Current Implementation [V1.0]
+==== Current Implementation [V1.3]
 
-Currently, the Google Calendar is opened up in a separate web window upon calling of the command "calendar" and is not yet integrated
-into the Personal Trainer Pro App. Also, the current implementation does not support Command Line Interface and require users to interact
-with the calendar through mouse click.
+Currently, the Google Calendar is opened up inside the application upon calling of the command "calendar" and does not
+support Command Line Interface. It require users to interact with the calendar through mouse click.
 
 When the user keys in the "calendar", the AddressBookParser parses through the command to check for correct parameters. Then, an event,
-ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up a new window showing the
-Google Calendar website.
+ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up the
+Google Calendar page in the application.
 
 ==== Future implementation [V2.0]
 
@@ -266,13 +265,13 @@ the Google Calendar API, the user can also then interact with it through Command
 
 ===== Aspect: Implementation of Google Calendar API
 
-Alternative 1 (current choice): Open up in a new browser
+Alternative 1: Open up in a new browser
 
 Pros: Easy to implement and debug
 
 Cons: Lack of Command Line Interface, troublesome for users
 
-Alternative 2: Open Google Calendar in the application
+Alternative 2 (current choice): Open Google Calendar in the application
 
 Pros: Ease of viewing for the trainers and clients, supports Command Line Interface
 
@@ -280,8 +279,8 @@ Cons: Positioning of StackPane or other scenebuilder objects may hinder other in
 
 //tag:: gender[]
 @by Ivan
-== Gender attribute
-==== Current Implementation
+
+==== Gender attribute : Current Implementation
 
 The Gender attribute only accepts male and female genders. This is shown by only accepting characters M, F, m and f and only single letters are accepted. The 'GENDER_VALIDATION_REGEX' ensures that only the selected single alphabets are able to be input into the command line.
 
@@ -383,18 +382,24 @@ Current BMI standards set by the World Health Organisation (WHO) are as follows:
 |=======================================================================
 
 
-==== Current Implementation [as of v1.2]
+==== Current Implementation [as of v1.3]
 
-Currently, each client is saved as a person with weight and height attributes. This is only sufficient to facilitate the calculation of their BMI.
+Currently, each client is saved as a person with weight and height attributes. This is sufficient to facilitate the calculation of their BMI.
 Having the weight and height attributes in a Person allows the easy updating using the `edit` command in the application.
 This will allow the BMI to be re-calculated each time a client's weight or height (or both) is updated.
 
-==== Future implementation [v1.5]
+The BMI for individual clients is calculated using the following formula: **BMI = weight / (height / 100)^2^ **.
 
-The BMI for individual clients will be calculated using the following formula: **BMI = weight / (height / 100)^2^ **
+The BMI of each client is stored as a Person attribute and is currently displayed (to 2 decimal places) in the PersonCard.
 
-The BMI for individual clients will then be stored as a Person attribute, but not displayed in the Person card to minimise the cluttering of information in the application.
-This will allow a sorting method to be implemented in the application. The current plan is to sort the clients according to their BMI values, in descending order.
+==== Future implementation [by v1.5]
+
+A sorting method will be implemented in the application. The current plan is to sort the clients according to their BMI values, in descending order.
+
+The BMI and Gender of each Person will help to determine the BMI classification according to the above table.
+Once the classification has been implemented and integrated into the UI (using the background colour of the PersonCard),
+the BMI for individual clients will be removed from the PersonCard to allow for a more intuitive display minimise the cluttering of information in the application.
+
 
 ==== Design Considerations
 
@@ -404,7 +409,7 @@ This will allow a sorting method to be implemented in the application. The curre
 ** Pros: Easy to see at first glance which client is in which classification, minimise information included in a Person card.
 ** Cons: Determining a client's actual BMI will require the trainer to perform a manual calculation since the actual BMI value is not reflected in the application.
 
-* **Alternative 2:** Display client's BMI classification as tags to their Person card
+* **Alternative 2:** Display client's BMI classification as tags to their Person card `currently implemented`
 ** Pros: Ease of viewing for trainer, actual BMI value will be available at first glance.
 ** Cons: Displaying each client's BMI values as tags may interfere with the implementation and display of any existing tags and it is crucial to ensure the implementation of this tag, if desired,
 in a way that will not affect the storage or retrieval of other tags associated with each client.
@@ -966,8 +971,10 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 * Ivan:
 * Minor - Gender Attribute added, this will enable trainers to understand the amount of calories and weight that
   contributes to a specific person of a certain gender.
-* Major - Firstly a function to estimate the approximate calories needed to reach the goal of the client and then a
- page with the exercises the clients can do with links to video they can watch from the application
+* Major - Mainly, a function to log the past weights of the clients so that they and the trainers can track their
+  progress. A chart will also be plotted based on their progress. Secondly a function to estimate the approximate
+  calories needed to reach the goal of the client and then a page with the exercises the clients can do with links to
+  video they can watch from the application
 
 * Wenhao:
 * Minor - Sorting command to sort the list of clients by BMI range
