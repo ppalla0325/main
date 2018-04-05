@@ -17,6 +17,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CalendarCommand;
+import seedu.address.logic.commands.CaloriesCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -172,6 +173,13 @@ public class AddressBookParserTest {
         SelectCommand command = (SelectCommand) parser.parseCommand(
                 SelectCommand.COMMAND_ALIAS + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new SelectCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_calories() throws Exception {
+        CaloriesCommand command = (CaloriesCommand) parser.parseCommand(
+                CaloriesCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new CaloriesCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

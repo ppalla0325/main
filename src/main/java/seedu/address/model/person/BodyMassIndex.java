@@ -7,13 +7,13 @@ package seedu.address.model.person;
  */
 public class BodyMassIndex {
 
-    public static final int ACCEPTABLE = 1;
-    public static final int OBESE = 2;
-    public static final int OVERWEIGHT = 3;
-    public static final int UNDERWEIGHT = 4;
+    public static final String ACCEPTABLE_CLASSIFICATION = "ACCEPTABLE";
+    public static final String OBESE_CLASSIFICATION = "OBESE";
+    public static final String OVERWEIGHT_CLASSIFICATION = "OVERWEIGHT";
+    public static final String UNDERWEIGHT_CLASSIFICATION = "UNDERWEIGHT";
 
     public final String value;
-    // public final int classification;
+    public final String classification;
 
     private String bodyMassIndex;
     private double bodyMassIndexValue;
@@ -29,7 +29,7 @@ public class BodyMassIndex {
      */
     public BodyMassIndex(String height, String weight) {
         bodyMassIndex = getBodyMassIndexString(height, weight);
-        // this.classification = getBodyMassIndexClassification(height, weight);
+        this.classification = getBodyMassIndexClassification(height, weight);
         this.value = formatBodyMassIndexStringForDisplay(bodyMassIndex);
     }
 
@@ -55,20 +55,20 @@ public class BodyMassIndex {
     /*
      * Returns the BMI Classification of a Person when given valid Height and Weight
      */
-    /*
-    private int getBodyMassIndexClassification(String height, String weight) {
+
+    private String getBodyMassIndexClassification(String height, String weight) {
         bodyMassIndexValue = getBodyMassIndexValue(height, weight);
         if (bodyMassIndexValue < 18.5) {
-            return UNDERWEIGHT;
+            return UNDERWEIGHT_CLASSIFICATION;
         } else if (bodyMassIndexValue < 25) {
-            return ACCEPTABLE;
+            return ACCEPTABLE_CLASSIFICATION;
         } else if (bodyMassIndexValue < 30) {
-            return OVERWEIGHT;
+            return OVERWEIGHT_CLASSIFICATION;
         } else {
-            return OBESE;
+            return OBESE_CLASSIFICATION;
         }
     }
-    */
+
 
     /*
      * Returns the BMI value of a Person when given valid Height and Weight

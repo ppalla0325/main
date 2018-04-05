@@ -1,4 +1,4 @@
-= AddressBook Level 4 - User Guide
+= Person Trainer Pro (PTP) - User Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -32,7 +32,7 @@ This app will not work with earlier versions of Java 8.
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::Capture.PNG[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -79,16 +79,22 @@ Examples:
 
 Shows a list of all persons in the PTP application. +
 Format: `list`
+Alias: `l`
 
-=== Sorting all persons : `sort`
+=== Filtering all persons according to BMI Classification : `bmi`
 
-Shows a list of all persons in the PTP application, sorted according to their BMI. +
-Format: `list`
+Shows a filtered list of all persons in the PTP application according to the given search query. +
+Format: `bmi KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `bmi overweight`
+* `bmi overweight underweight obese`
 
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [g/GENDER] [age/AGE] [t/TAG]...`
+Alias: `e`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -102,13 +108,14 @@ Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
+* `e 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 === Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
+Alias: `f`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -122,13 +129,14 @@ Examples:
 
 * `find John` +
 Returns `john` and `John Doe`
-* `find Betsy Tim John` +
+* `f Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
 === Deleting a person : `delete`
 
 Deletes the specified person from the address book. +
 Format: `delete INDEX`
+Alias: `d`
 
 ****
 * Deletes the person at the specified `INDEX`.
@@ -142,13 +150,14 @@ Examples:
 `delete 2` +
 Deletes the 2nd person in the address book.
 * `find Betsy` +
-`delete 1` +
+`d 1` +
 Deletes the 1st person in the results of the `find` command.
 
 === Selecting a person : `select`
 
 Selects the person identified by the index number used in the last person listing. +
 Format: `select INDEX`
+Alias: `s`
 
 ****
 * Selects the person and loads the Google search page the person at the specified `INDEX`.
@@ -162,7 +171,7 @@ Examples:
 `select 2` +
 Selects the 2nd person in the address book.
 * `find Betsy` +
-`select 1` +
+`s 1` +
 Selects the 1st person in the results of the `find` command.
 
 === Show Google Calendar : `calendar`
@@ -177,6 +186,27 @@ Format: `calendar`
 Examples:
 
 * `calendar`
+
+=== Show Calories a person requires : `Calories`
+
+Selects the person identified by the index number and shows the amount of calories needed to increase or decrease in weight. +
+Format: `Calories INDEX`
+Alias: `cal`
+
+****
+* Selects the person and loads the Calories calculator page the person at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* `1, 2, 3, ...`
+****
+
+Examples:
+
+* `list` +
+`Calories 2` +
+Shows the calories of the 2nd person in the address book.
+* `find Betsy` +
+`cal 1` +
+Shows the calories of the 1st person in the results of the `find` command.
 
 === Scheduling appointments with clients `[coming in v2.0]`
 
@@ -284,7 +314,8 @@ e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *List* : `list`
-* *Sort* : `sort`
+* *Filter* : `bmi KEYWORD [MORE_KEYWORDS]` +
+e.g.   `bmi overweight underweight`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`

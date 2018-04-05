@@ -971,10 +971,10 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 * Ivan:
 * Minor - Gender Attribute added, this will enable trainers to understand the amount of calories and weight that
   contributes to a specific person of a certain gender.
-* Major - Mainly, a function to log the past weights of the clients so that they and the trainers can track their
-  progress. A chart will also be plotted based on their progress. Secondly a function to estimate the approximate
-  calories needed to reach the goal of the client and then a page with the exercises the clients can do with links to
-  video they can watch from the application
+* Major - Mainly, a function to estimate the approximate calories needed to reach the goal of the client and
+  then a page with the exercises the clients can do with links to video they can watch from the application. Secondly,
+  a function to log the past weights of the clients so that they and the trainers can track their progress.
+  A chart will also be plotted based on their progress.
 
 * Wenhao:
 * Minor - Sorting command to sort the list of clients by BMI range

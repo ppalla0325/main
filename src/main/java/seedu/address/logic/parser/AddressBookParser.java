@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CalendarCommand;
+import seedu.address.logic.commands.CaloriesCommand;
+import seedu.address.logic.commands.ClassificationCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -47,6 +49,7 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
         /**
         * Adapted from https://nus-cs2103-ay1718s2.github.io/
@@ -75,6 +78,13 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
         case FindCommand.COMMAND_ALIAS:
             return new FindCommandParser().parse(arguments);
+
+        case ClassificationCommand.COMMAND_WORD:
+            return new ClassificationCommandParser().parse(arguments);
+
+        case CaloriesCommand.COMMAND_WORD:
+        case CaloriesCommand.COMMAND_ALIAS:
+            return new CaloriesCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
         case ListCommand.COMMAND_ALIAS:

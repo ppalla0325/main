@@ -8,7 +8,7 @@
         <email>alice@example.com</email>
         <address>123, Jurong West Ave 6, #08-111</address>
         <height>169.0</height>
-        <weight>55.5</weight>
+        <weight>95.5</weight>
         <gender>f</gender>
         <age>22</age>
         <tagged>friends</tagged>
@@ -19,7 +19,7 @@
         <email>johnd@example.com</email>
         <address>311, Clementi Ave 2, #02-25</address>
         <height>169.0</height>
-        <weight>55.5</weight>
+        <weight>95.5</weight>
         <gender>f</gender>
         <age>22</age>
         <tagged>owesMoney</tagged>
@@ -61,7 +61,7 @@
         <email>lydia@example.com</email>
         <address>little tokyo</address>
         <height>169.0</height>
-        <weight>55.5</weight>
+        <weight>45.5</weight>
         <gender>f</gender>
         <age>22</age>
     </persons>
@@ -71,7 +71,7 @@
         <email>anna@example.com</email>
         <address>4th street</address>
         <height>169.0</height>
-        <weight>55.5</weight>
+        <weight>75.5</weight>
         <gender>f</gender>
         <age>22</age>
     </persons>

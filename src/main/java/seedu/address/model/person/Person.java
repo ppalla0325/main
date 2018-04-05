@@ -22,6 +22,7 @@ public class Person {
     private final Height height;
     private final Weight weight;
     private final BodyMassIndex bodyMassIndex;
+    private final String bodyMassIndexClassification;
     private final Gender gender;
     private final Age age;
 
@@ -40,6 +41,7 @@ public class Person {
         this.height = height;
         this.weight = weight;
         this.bodyMassIndex = new BodyMassIndex(height.toString(), weight.toString());
+        this.bodyMassIndexClassification = bodyMassIndex.classification;
         this.gender = gender;
         this.age = age;
         // protect internal tags from changes in the arg list
@@ -72,6 +74,10 @@ public class Person {
 
     public BodyMassIndex getBodyMassIndex() {
         return bodyMassIndex;
+    }
+
+    public String getBodyMassIndexClassification() {
+        return bodyMassIndexClassification;
     }
 
     public Gender getGender() {
